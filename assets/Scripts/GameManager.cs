@@ -8,12 +8,19 @@ public class GameManager : MonoBehaviour {
 
 	public int Score { get; set; }
 	public List<GameObject> Objects;
+	private List<GameObject> _connectedObjects;
 	private GameObject _nextGameObject;
 	private int _currentLevel = 0;
+	public static string ManagerTag = "GameManager";
 
 	void Update() {
 		checkGameStatus ();
 	}
+
+	void Awake() {
+		_connectedObjects = new List<GameObject> ();
+	}
+
 
 	public GameObject NextObject
 	{
@@ -37,6 +44,17 @@ public class GameManager : MonoBehaviour {
 	public void startGame() {
 		Score = 0;
 		// do something when game started
+	}
+
+	// Connecting objects 
+
+	public void Select(GameObject gameObject) {
+		if (_connectedObjects.Count == 2) {
+			LineHelper.Connect (_connectedObjects [0], _connectedObjects [1]);
+			_connectedObjects = new List<GameObject> ();
+			return;
+		}
+		_connectedObjects.Add (gameObject);
 	}
 
 	//Private functions
