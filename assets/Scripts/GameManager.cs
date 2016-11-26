@@ -60,9 +60,16 @@ public class GameManager : MonoBehaviour {
 
 	public void startGame() {
 		Score = 0;
+		setGlow (true);
+		// do something when game started
+	}
+
+	private void setGlow(bool shouldGlow) {
+		if (NextObject == null) {
+			return;
+		}
 		GlowingObject glowingObject = NextObject.GetComponent<GlowingObject>();
 		glowingObject.ShouldGlow = true;
-		// do something when game started
 	}
 
 	// Connecting objects 
@@ -72,7 +79,9 @@ public class GameManager : MonoBehaviour {
 			_selectedObjects = new List<GameObject> ();
 			return;
 		}
+
 		_selectedObjects.Add (gameObject);
+
 		if (_selectedObjects.Count == 2) {
 			LineHelper.Connect (_selectedObjects [0], _selectedObjects [1]);
 			_selectedObjects = new List<GameObject> ();
