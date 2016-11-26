@@ -18823,6 +18823,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 458702, guid: 69d4570f3bec6408aa84d214d2d9aea2, type: 2}
   m_PrefabInternal: {fileID: 933345841}
+--- !u!1 &939051418 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 119362, guid: c50d27032f0b34aeaa4341e8788a8312, type: 2}
+  m_PrefabInternal: {fileID: 761079514}
 --- !u!1001 &944798684
 Prefab:
   m_ObjectHideFlags: 0
@@ -24077,6 +24081,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 481610, guid: aea6c6424b02746289314c3803bf0dbd, type: 2}
   m_PrefabInternal: {fileID: 1211119309}
+--- !u!1 &1212094544 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 198456, guid: c5ed288085be745f8bb6801dc46ae944, type: 2}
+  m_PrefabInternal: {fileID: 1730592845}
 --- !u!1001 &1212164685
 Prefab:
   m_ObjectHideFlags: 0
@@ -38761,6 +38769,24 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 472926, guid: d598f6e37afc54ff2af75c6d70cdcbc8, type: 2}
   m_PrefabInternal: {fileID: 1531526466}
+--- !u!1 &1978988128 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010717517266, guid: 11c0ab3eb1bd2445884e1222a43cfbb3,
+    type: 2}
+  m_PrefabInternal: {fileID: 2108948084}
+--- !u!114 &1978988129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1978988128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41daed79199b3436187a5dfdc57eb69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Lights: []
+  GridObjects: []
 --- !u!1001 &1981832174
 Prefab:
   m_ObjectHideFlags: 0
@@ -41146,6 +41172,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000013025306344, guid: 11c0ab3eb1bd2445884e1222a43cfbb3,
+        type: 2}
+      propertyPath: Objects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4000013563207636, guid: 11c0ab3eb1bd2445884e1222a43cfbb3, type: 2}
       propertyPath: m_LocalPosition.x
       value: 22.426907
@@ -41182,7 +41213,12 @@ Prefab:
         type: 2}
       propertyPath: Objects.Array.data[0]
       value: 
-      objectReference: {fileID: 1135777424}
+      objectReference: {fileID: 1212094544}
+    - target: {fileID: 114000013025306344, guid: 11c0ab3eb1bd2445884e1222a43cfbb3,
+        type: 2}
+      propertyPath: Objects.Array.data[1]
+      value: 
+      objectReference: {fileID: 939051418}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11c0ab3eb1bd2445884e1222a43cfbb3, type: 2}
   m_IsPrefabParent: 0
