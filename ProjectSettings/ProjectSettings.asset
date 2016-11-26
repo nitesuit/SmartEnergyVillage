@@ -96,7 +96,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.Company.ProductName
+  bundleIdentifier: net.eatingPhone.game
   bundleVersion: 1.0
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
@@ -181,9 +181,18 @@ PlayerSettings:
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
   resolutionDialogBanner: {fileID: 0}
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 128
+      m_Height: 128
   m_BuildTargetBatching: []
-  m_BuildTargetGraphicsAPIs: []
+  m_BuildTargetGraphicsAPIs:
+  - m_BuildTarget: iOSSupport
+    m_APIs: 1000000008000000
+    m_Automatic: 1
   webPlayerTemplate: APPLICATION:Default
   m_TemplateCustomTags: {}
   wiiUTitleID: 0005000011000000
@@ -420,8 +429,12 @@ PlayerSettings:
   intPropertyNames:
   - Standalone::ScriptingBackend
   - WebPlayer::ScriptingBackend
+  - iOS::Architecture
+  - iOS::ScriptingBackend
   Standalone::ScriptingBackend: 0
   WebPlayer::ScriptingBackend: 0
+  iOS::Architecture: 2
+  iOS::ScriptingBackend: 1
   boolPropertyNames:
   - Android::VR::enable
   - Metro::VR::enable
