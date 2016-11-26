@@ -42,12 +42,12 @@ public class TurbineManager : MonoBehaviour
 
 	void OnGUI()
 	{
-		var style = new GUIStyle();
-		style.fontSize = 36;
+		//var style = new GUIStyle();
+		//style.fontSize = 36;
 
-		var strText = string.Format(" Vol : {0} \n bVol : {1} \n speed : {2}", volume, baseVolume, rotatorSpeed);
+		//var strText = string.Format(" Vol : {0} \n bVol : {1} \n speed : {2}", volume, baseVolume, rotatorSpeed);
 
-		GUI.Label(new Rect(400f, 100f, 400f, 400f), strText, style);
+		//GUI.Label(new Rect(400f, 100f, 400f, 400f), strText, style);
 	}
 	
 	public bool isReady;
