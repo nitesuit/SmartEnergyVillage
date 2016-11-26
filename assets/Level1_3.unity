@@ -41337,6 +41337,11 @@ Prefab:
       propertyPath: Objects.Array.data[1]
       value: 
       objectReference: {fileID: 939051418}
+    - target: {fileID: 114000013025306344, guid: 11c0ab3eb1bd2445884e1222a43cfbb3,
+        type: 2}
+      propertyPath: WireMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 4c4a936afe6e6584ebde3e950c1e9b36, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11c0ab3eb1bd2445884e1222a43cfbb3, type: 2}
   m_IsPrefabParent: 0
