@@ -17,13 +17,14 @@ public class TurbineManager : MonoBehaviour
 	public float baseVolume;
 
 	private float buildTimer;
-	private float maxSpeed = 5f;
+	private float maxSpeed = 7.5f;
 	private int SampleSize = 256;
 	//
 	private bool isBuilt;
 	private bool isConnected;
+	private bool isPowered;
 
-	private float minYPosition = 5.5f;
+	private float minYPosition = 9.5f;
 	//
 	
 	AudioSource audioSource;
@@ -63,7 +64,7 @@ public class TurbineManager : MonoBehaviour
 
 		if (buildTimer > fixedBuiltTime && !isReady)
 		{
-			StartCoroutine(ShowBuildParticleCorout(false, true, 1.75f));
+			StartCoroutine(ShowBuildParticleCorout(false, true, 4.5f));
 			IsConnected = true;
 			isReady = true;
 		}
@@ -76,16 +77,28 @@ public class TurbineManager : MonoBehaviour
 
 	IEnumerator ShowBuildParticleCorout(bool status, bool showBlast = false, float delay = 0f)
 	{
+
+		if (status)
+		{
+			particleSys.gameObject.SetActive(true);
+			var p = particleSys.GetComponent<ParticleSystem>();
+			p.Clear();
+			Debug.Log("Restart particles");
+		}
+			
 		if (showBlast)
 		{
 			var p = particleSys.GetComponent<ParticleSystem>();
 			p.loop = false;
 			p.startLifetime = 1.5f;
-			p.startSpeed = 4.5f;
+			p.startSpeed = 9.5f;
+			p.Play();
 		}
 
 		yield return new WaitForSeconds(delay);
-		particleSys.gameObject.SetActive(status);
+		
+		if(!status)
+			particleSys.gameObject.SetActive(false);
 	}
 	
 	public bool IsBuilt
@@ -99,6 +112,7 @@ public class TurbineManager : MonoBehaviour
 		{	
 			meshObj.gameObject.SetActive(true);
 			isBuilt = value;
+			StartListenAudio();
 		}
 	}
 
@@ -112,7 +126,23 @@ public class TurbineManager : MonoBehaviour
 		set
 		{	
 			isConnected = value;
-			StartListenAudio();
+			if (value)
+			{
+				StartCoroutine(ShowBuildParticleCorout(true, true, 2f));
+			}
+		}
+	}
+
+	public bool IsPowered
+	{
+		get
+		{
+			return isPowered;
+		}
+
+		set
+		{	
+			isPowered = value;
 		}
 	}
 
@@ -136,6 +166,7 @@ public class TurbineManager : MonoBehaviour
 			if (rotatorSpeed >= maxSpeed)
 			{
 				rotatorSpeed = maxSpeed;
+				IsPowered = true;
 			}
 
 			rotator.Rotate(new Vector3(0f, 0f, rotatorSpeed * Time.deltaTime * 22f));
