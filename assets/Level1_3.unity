@@ -15144,7 +15144,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.17880331, g: 0, b: 0.63235295, a: 1}
   m_Intensity: 0.8
   m_Range: 10
   m_SpotAngle: 30
@@ -41117,6 +41117,53 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 420490, guid: 4cff705ff264a4b7180657d494c6f0b8, type: 2}
   m_PrefabInternal: {fileID: 2105845235}
+--- !u!1001 &2108948084
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000013563207636, guid: 11c0ab3eb1bd2445884e1222a43cfbb3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 22.426907
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013563207636, guid: 11c0ab3eb1bd2445884e1222a43cfbb3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -4.850012
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013563207636, guid: 11c0ab3eb1bd2445884e1222a43cfbb3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 38.93721
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013563207636, guid: 11c0ab3eb1bd2445884e1222a43cfbb3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013563207636, guid: 11c0ab3eb1bd2445884e1222a43cfbb3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013563207636, guid: 11c0ab3eb1bd2445884e1222a43cfbb3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013563207636, guid: 11c0ab3eb1bd2445884e1222a43cfbb3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013563207636, guid: 11c0ab3eb1bd2445884e1222a43cfbb3, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013025306344, guid: 11c0ab3eb1bd2445884e1222a43cfbb3,
+        type: 2}
+      propertyPath: Objects.Array.data[0]
+      value: 
+      objectReference: {fileID: 1135777424}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 11c0ab3eb1bd2445884e1222a43cfbb3, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &2110489659
 Prefab:
   m_ObjectHideFlags: 0
