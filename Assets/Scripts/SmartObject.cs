@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (Collider))]
 public class SmartObject : MonoBehaviour {
 
 	void OnMouseDown() {
-		GameObject gameManagerObject = GameObject.FindGameObjectWithTag (GameManager.ManagerTag);
-		GameManager gameManager = gameManagerObject.GetComponent<GameManager> ();
+		GameManager gameManager = GameManager.instance;
 		gameManager.Select (gameObject);
 	}
 }

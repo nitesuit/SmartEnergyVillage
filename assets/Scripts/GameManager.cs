@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
+	public static GameManager instance;
+
 	enum GameScore { Win = 100, Lose = -100, Start = 0};
 
 	public int Score { get; set; }
@@ -13,6 +15,7 @@ public class GameManager : MonoBehaviour {
 	private int _currentLevel = 0;
 	public static string ManagerTag = "GameManager";
 
+	public Material WireMaterial;
 
 	void Start() {
 		startGame ();
@@ -25,6 +28,12 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Awake() {
+
+		if (instance == null)
+		{ instance = this; }
+		else
+		{ Destroy(instance); }
+	
 		_connectedObjects = new List<GameObject> ();
 	}
 		
@@ -41,6 +50,8 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 	}
+	
+
 
 	public void CompleteLevel() {
 		_currentLevel++;

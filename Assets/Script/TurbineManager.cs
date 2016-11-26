@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class TurbineManager : MonoBehaviour {
 
@@ -8,8 +10,11 @@ public class TurbineManager : MonoBehaviour {
 	public float volume;
 	public float rotatorSpeed;
 
-	
+	//
+	public float baseVolume;
 
+
+	private float maxSpeed = 5f;
 	private int SampleSize = 256;
 	//
 	private bool isBuilt;
@@ -29,7 +34,10 @@ public class TurbineManager : MonoBehaviour {
 	{
 		var style = new GUIStyle();
 		style.fontSize = 36;
-		GUI.Label(new Rect(400f, 100f, 400f, 100f) ,"Dec: " + volume, style );
+
+		var strText = string.Format(" Vol : {0} \n bVol : {1} \n speed : {2}", volume, baseVolume, rotatorSpeed);
+		
+		GUI.Label(new Rect(400f, 100f, 400f, 400f) ,strText, style );
 	}
 
 	void OnMouseDown()
@@ -68,23 +76,47 @@ public class TurbineManager : MonoBehaviour {
 
 	void Update()
 	{
-		if (volume > 0.0095f)
-		{
-			rotatorSpeed += 1.25f;
-		}
-		else if (rotatorSpeed > 0f)
-		{
-			rotatorSpeed -= 0.015f;
-		}
-
+		//
+	
 		AnalyzeSound(audioSource);
 
-		if (IsBuilt && IsConnected)
-		{	
-			rotator.Rotate(new Vector3(0f, 0f, rotatorSpeed* Time.deltaTime));
-			
+		if (isConnected)
+		{
+			var acceleration = 0f;
+
+			if (baseVolume > 0f && rotatorSpeed < maxSpeed)
+			{
+				acceleration = volume - baseVolume > 0.15f ? 0.05f : 0f;
+			}
+
+			rotatorSpeed += acceleration;
+
+			if (rotatorSpeed >= maxSpeed)
+			{
+				rotatorSpeed = maxSpeed;
+			}
+
+			rotator.Rotate(new Vector3(0f, 0f, rotatorSpeed * Time.deltaTime * 22f));
 		}
 
+	}
+
+
+
+	IEnumerator SetBaseVolume()
+	{
+		var sampleTime = 3f;
+		var sampleTimeCounter = 0f;
+		var volList = new List<float>();
+
+		while (sampleTimeCounter < sampleTime)
+		{
+			volList.Add(volume);
+			sampleTimeCounter += Time.deltaTime;
+			yield return null;
+		}
+
+		baseVolume = volList.Average();
 	}
 	
 	void StartListenAudio()
@@ -94,6 +126,8 @@ public class TurbineManager : MonoBehaviour {
 
 		while (!(Microphone.GetPosition(null) > 0)) { }
 		audioSource.Play();
+
+		StartCoroutine(SetBaseVolume());
 	}
 
 	void AnalyzeSound(AudioSource MusicSource)
