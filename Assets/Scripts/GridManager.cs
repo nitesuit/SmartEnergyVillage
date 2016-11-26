@@ -28,13 +28,19 @@ public class GridManager : MonoBehaviour {
 				if (l.type != LightType.Point) {
 					continue;
 				}
-				l.intensity = ((int)Random.Range (MinIntensity, MaxIntensity - 1.5f));
-				foreach (GameObject go in GridObjects) {
-					setEmission (go, (int)Random.Range (MinIntensity, MaxIntensity));
-				}
+				setEmission (l.transform.parent.gameObject, (float)Random.Range (MinIntensity, MaxIntensity - 1.5f));
+				l.intensity = ((float)Random.Range (MinIntensity, MaxIntensity - 1.5f));
+			}
+			foreach (GameObject go in GridObjects) {
+				setEmission (go, (int)Random.Range (MinIntensity, MaxIntensity));
 			}
 		}
 	}
+
+	int GetEnergy() {
+		return GridObjects.Count * 25;
+	}
+
 
 	//	public void Add(GameObject gameObjext) 
 	//		GridObjects.Add(gameObject);
@@ -50,10 +56,11 @@ public class GridManager : MonoBehaviour {
 			if (l.type != LightType.Point)  {
 				continue;
 			}
+			setEmission (l.transform.parent.gameObject, MaxIntensity);
 			l.intensity = (MaxIntensity);
-			foreach (GameObject go in GridObjects) {
-				setEmission (go, MaxIntensity);
-			}
+		}
+		foreach (GameObject go in GridObjects) {
+			setEmission (go, MaxIntensity);
 		}
 	}
 
@@ -63,10 +70,12 @@ public class GridManager : MonoBehaviour {
 			if (l.type != LightType.Point)  {
 				continue;
 			}
+			setEmission (l.transform.parent.gameObject, MinIntensity);
 			l.intensity = (MinIntensity);
-			foreach (GameObject go in GridObjects) {
-				setEmission (go, MinIntensity);
-			}
+
+		}
+		foreach (GameObject go in GridObjects) {
+			setEmission (go, MinIntensity);
 		}
 	}
 
