@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
 	public List<GameObject> Objects;
 	private List<GameObject> _selectedObjects;
 	private GameObject _nextGameObject;
+	private GridManager _gridManager;
 	private int _currentLevel = 0;
 	public static string ManagerTag = "GameManager";
 
@@ -36,6 +37,16 @@ public class GameManager : MonoBehaviour {
 	
 
 		_selectedObjects = new List<GameObject> ();
+
+
+		_gridManager = GetComponent<GridManager> ();
+		_gridManager.GridObjects = Objects;
+		_gridManager.Blink ();
+
+		foreach (var house in Objects) {
+			house.AddComponent<SmartObject> ();
+		}
+
 	}
 		
 	public GameObject NextObject
@@ -69,8 +80,8 @@ public class GameManager : MonoBehaviour {
 		if (NextObject == null) {
 			return;
 		}
-		GlowingObject glowingObject = NextObject.GetComponent<GlowingObject>();
-		glowingObject.ShouldGlow = true;
+//		GlowingObject glowingObject = NextObject.GetComponent<GlowingObject>();
+//		glowingObject.ShouldGlow = true;
 	}
 
 	// Connecting objects 
