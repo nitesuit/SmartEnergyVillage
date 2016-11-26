@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
 	public static string ManagerTag = "GameManager";
 
 	public Material WireMaterial;
+	public GameObject WirePrefab;
 
 	void Start() {
 		startGame ();
@@ -74,7 +75,7 @@ public class GameManager : MonoBehaviour {
 		}
 		_selectedObjects.Add (gameObject);
 		if (_selectedObjects.Count == 2) {
-			LineHelper.Connect (_selectedObjects [0], _selectedObjects [1]);
+			LineHelper.Connect (_selectedObjects [0].transform, _selectedObjects [1].transform);
 			_selectedObjects = new List<GameObject> ();
 			return;
 		}
