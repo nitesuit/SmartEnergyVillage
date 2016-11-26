@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class LineHelper : MonoBehaviour {
 
-	static int maxPointCount = 8;
+	static int maxPointCount = 32;
 	
 	public static void Connect(Transform firstObject, Transform secondObject)
 	{
@@ -55,14 +55,14 @@ public class LineHelper : MonoBehaviour {
 			{
 				yMod = (1f / maxPointCount) * i;
 			}
-			//yMod = yMod / 2f + 0.5f; 
+			yMod = yMod / 2f + 0.5f; 
 			
 			Vector3 mod = dist * ((1f / maxPointCount) * i);
 			
 			Debug.Log(yMod);
 			
 			var point = startPoint + mod;
-			point = new Vector3(point.x, (point.y +2f) * yMod , point.z);
+			point = new Vector3(point.x, point.y * yMod , point.z);
 			points.Add(point);
 		}
 

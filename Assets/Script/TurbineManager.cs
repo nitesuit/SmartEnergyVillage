@@ -3,32 +3,41 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class TurbineManager : MonoBehaviour {
+public class TurbineManager : MonoBehaviour
+{
 
 	public Transform rotator;
 	public Transform meshObj;
+	public Transform particleSys;
 	public float volume;
 	public float rotatorSpeed;
 
+	public float fixedBuiltTime = 0.75f;
 	//
 	public float baseVolume;
 
-
+	private float buildTimer;
 	private float maxSpeed = 5f;
 	private int SampleSize = 256;
 	//
 	private bool isBuilt;
 	private bool isConnected;
 
+	private float minYPosition = 5.5f;
+	//
+	
 	AudioSource audioSource;
 
 	// Use this for initialization
-	void Start () {
+	void Start()
+	{
 
 		audioSource = GetComponent<AudioSource>();
 		meshObj.gameObject.SetActive(false);
+		StartCoroutine(ShowBuildParticleCorout(false));
+
 	}
-	
+
 
 	void OnGUI()
 	{
@@ -36,14 +45,47 @@ public class TurbineManager : MonoBehaviour {
 		style.fontSize = 36;
 
 		var strText = string.Format(" Vol : {0} \n bVol : {1} \n speed : {2}", volume, baseVolume, rotatorSpeed);
-		
-		GUI.Label(new Rect(400f, 100f, 400f, 400f) ,strText, style );
+
+		GUI.Label(new Rect(400f, 100f, 400f, 400f), strText, style);
+	}
+	
+	public bool isReady;
+
+	void OnMouseDrag()
+	{
+		if (!isReady)
+		{
+			StartCoroutine(ShowBuildParticleCorout(true, false, 0f));
+			IsBuilt = true;
+
+			buildTimer += Time.deltaTime;
+		}
+
+		if (buildTimer > fixedBuiltTime && !isReady)
+		{
+			StartCoroutine(ShowBuildParticleCorout(false, true, 1.75f));
+			IsConnected = true;
+			isReady = true;
+		}
+		else if ( meshObj.transform.localPosition.y <= 0 && !isReady)
+		{	
+			var y = minYPosition * ((1 / fixedBuiltTime) * buildTimer); 
+			meshObj.transform.localPosition = new Vector3(meshObj.transform.localPosition.x, (minYPosition * -1) + y, meshObj.transform.localPosition.z);
+		}
 	}
 
-	void OnMouseDown()
+	IEnumerator ShowBuildParticleCorout(bool status, bool showBlast = false, float delay = 0f)
 	{
-		IsBuilt = true;
-		IsConnected = true;
+		if (showBlast)
+		{
+			var p = particleSys.GetComponent<ParticleSystem>();
+			p.loop = false;
+			p.startLifetime = 1.5f;
+			p.startSpeed = 4.5f;
+		}
+
+		yield return new WaitForSeconds(delay);
+		particleSys.gameObject.SetActive(status);
 	}
 	
 	public bool IsBuilt
