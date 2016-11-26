@@ -219,7 +219,7 @@ PlayerSettings:
   enableCrashReportAPI: 0
   cameraUsageDescription: 
   locationUsageDescription: 
-  microphoneUsageDescription: 
+  microphoneUsageDescription: Can use Mic?
   XboxTitleId: 
   XboxImageXexPath: 
   XboxSpaPath: 

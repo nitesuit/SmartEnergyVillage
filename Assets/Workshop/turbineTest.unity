@@ -133,15 +133,6 @@ Prefab:
       propertyPath: m_Name
       value: turbinePro
       objectReference: {fileID: 0}
-    - target: {fileID: 1000010022369212, guid: 7c1570613f18540abb2ead89e110a6a0, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010098241384, guid: 7c1570613f18540abb2ead89e110a6a0,
-        type: 2}
-      propertyPath: meshObj
-      value: 
-      objectReference: {fileID: 1090960335}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c1570613f18540abb2ead89e110a6a0, type: 2}
   m_IsPrefabParent: 0
@@ -295,8 +286,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!4 &1090960335 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000012006318090, guid: 7c1570613f18540abb2ead89e110a6a0,
-    type: 2}
-  m_PrefabInternal: {fileID: 671511008}

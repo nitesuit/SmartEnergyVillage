@@ -68,13 +68,13 @@ public class TurbineManager : MonoBehaviour {
 
 	void Update()
 	{
-		if (volume > 0.008f)
+		if (volume > 0.0095f)
 		{
-			rotatorSpeed += 1.5f;
+			rotatorSpeed += 1.25f;
 		}
 		else if (rotatorSpeed > 0f)
 		{
-			rotatorSpeed -= 0.01f;
+			rotatorSpeed -= 0.015f;
 		}
 
 		AnalyzeSound(audioSource);
