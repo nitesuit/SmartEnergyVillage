@@ -4,29 +4,40 @@ using System.Collections.Generic;
 
 public class LineHelper : MonoBehaviour {
 
-	static int maxPointCount = 8;
+	static int maxPointCount = 32;
 	
 	public static void Connect(Transform firstObject, Transform secondObject)
 	{
+		
 		if (firstObject == secondObject)
 			return;
-	
-		if (firstObject.gameObject.GetComponent<LineRenderer>() != null)
-		{
-			if (secondObject.gameObject.GetComponent<LineRenderer>() != null)
-			{
-				return;
-			}
-			else
-			{
-				var temp = firstObject;
-				firstObject = secondObject;
-				secondObject = firstObject;
-			}
-		}
 
-		firstObject = firstObject.GetComponent<SmartObject>().wireConnector;
-		secondObject = secondObject.GetComponent<SmartObject>().wireConnector;
+		
+		Debug.Log("firstObject : " + firstObject.ToString());
+		Debug.Log("secondObject : " + secondObject.ToString());
+
+
+
+
+		//if (firstObject.gameObject.GetComponent<LineRenderer>() != null)
+		//{
+		//	if (secondObject.gameObject.GetComponent<LineRenderer>() != null)
+		//	{
+		//		return;
+		//	}
+		//	else
+		//	{
+		//		var temp = firstObject;
+		//		firstObject = secondObject;
+		//		secondObject = firstObject;
+		//	}
+		//}
+
+		if (firstObject.GetComponent<SmartObject>().wireConnector != null)
+			firstObject = firstObject.GetComponent<SmartObject>().wireConnector;
+			
+		if ( secondObject.GetComponent<SmartObject>().wireConnector != null)
+			secondObject = secondObject.GetComponent<SmartObject>().wireConnector;
 		
 		firstObject.gameObject.AddComponent<LineRenderer> ();
 		var lr = firstObject.GetComponent<LineRenderer> ();
@@ -55,14 +66,14 @@ public class LineHelper : MonoBehaviour {
 			{
 				yMod = (1f / maxPointCount) * i;
 			}
-			//yMod = yMod / 2f + 0.5f; 
+			yMod = yMod / 2f + 0.5f; 
 			
 			Vector3 mod = dist * ((1f / maxPointCount) * i);
 			
 			Debug.Log(yMod);
 			
 			var point = startPoint + mod;
-			point = new Vector3(point.x, (point.y +2f) * yMod , point.z);
+			point = new Vector3(point.x, point.y * yMod , point.z);
 			points.Add(point);
 		}
 
