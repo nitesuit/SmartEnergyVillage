@@ -37,8 +37,24 @@ GameObject:
   - 114: {fileID: 114000010098241384}
   - 82: {fileID: 82000013065775306}
   - 65: {fileID: 65000011872135660}
+  - 114: {fileID: 114000011671716078}
   m_Layer: 0
   m_Name: turbine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000012340914198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013798614120}
+  m_Layer: 0
+  m_Name: WireCon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,14 +132,28 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010452583358}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1779047, y: -1.363101, z: -4.475153}
+  m_LocalRotation: {x: 0, y: 0.015707303, z: 0, w: 0.9998767}
+  m_LocalPosition: {x: 7.7, y: 7.53, z: 55.69}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_LocalEulerAnglesHint: {x: 0, y: 1.8, z: 0}
   m_Children:
   - {fileID: 4000012006318090}
+  - {fileID: 4000013798614120}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &4000013798614120
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012340914198}
+  m_LocalRotation: {x: -0, y: -0.015707303, z: -0, w: 0.9998767}
+  m_LocalPosition: {x: 0.29431075, y: -0.067499995, z: -0.45097807}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000012952945748}
+  m_RootOrder: 1
 --- !u!4 &4000014293090136
 Transform:
   m_ObjectHideFlags: 1
@@ -369,3 +399,15 @@ MonoBehaviour:
   volume: 0
   rotatorSpeed: 0
   baseVolume: 0
+--- !u!114 &114000011671716078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010452583358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b647a32451e514ede944ef2e0cf0b913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireConnector: {fileID: 4000013798614120}

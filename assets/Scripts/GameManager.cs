@@ -10,14 +10,13 @@ public class GameManager : MonoBehaviour {
 
 	public int Score { get; set; }
 	public List<GameObject> Objects;
-	public static string ManagerTag = "GameManager";
-	public Material WireMaterial;
-	public GameObject selectedEffect;
-
 	private List<GameObject> _selectedObjects;
 	private GameObject _nextGameObject;
 	private int _currentLevel = 0;
+	public static string ManagerTag = "GameManager";
 
+	public Material WireMaterial;
+	public GameObject WirePrefab;
 
 	void Start() {
 		startGame ();
@@ -77,40 +76,20 @@ public class GameManager : MonoBehaviour {
 	// Connecting objects 
 
 	public void Select(GameObject gameObject) {
-//		if (_selectedObjects.Count == 1) {
-//			if (_selectedObjects.First().Equals(gameObject) ) {
-//				Destroy(gameObject.transform.FindChild (selectedEffect.name).transform.gameObject);
-//				_selectedObjects = new List<GameObject> ();
-//				return;
-//			}
-//		}
-		var particles = Instantiate(selectedEffect, gameObject.transform) as GameObject;
-		particles.transform.SetParent (gameObject.transform);
+		if (_selectedObjects.Count == 1 && _selectedObjects.First().Equals(gameObject) ) {
+			_selectedObjects = new List<GameObject> ();
+			return;
+		}
+
 		_selectedObjects.Add (gameObject);
 
-
 		if (_selectedObjects.Count == 2) {
-			removeParticleSystems (_selectedObjects);
-
-			if (_selectedObjects[0] == gameObject) {
-				_selectedObjects = new List<GameObject> ();
-				return;
-			}
-			LineHelper.Connect (_selectedObjects [0], _selectedObjects [1]);
-
+			LineHelper.Connect (_selectedObjects [0].transform, _selectedObjects [1].transform);
 			_selectedObjects = new List<GameObject> ();
 			return;
 		}
 	}
 
-	private void removeParticleSystems(List<GameObject> selectedObjects) {
-		foreach (var obj in selectedObjects) {
-			var particleSystem = obj.GetComponentInChildren<ParticleSystem>();
-			if (particleSystem) {
-				Destroy(particleSystem.gameObject);
-			}
-		}
-	}
 	//Private functions
 
 	private void checkGameStatus() {
