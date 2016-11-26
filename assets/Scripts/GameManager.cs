@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour {
 
 
 		_gridManager = GetComponent<GridManager> ();
-		_gridManager.GridObjects = Objects.ToArray ();
+		_gridManager.GridObjects = Objects;
 		_gridManager.Blink ();
 
 		foreach (var house in Objects) {
