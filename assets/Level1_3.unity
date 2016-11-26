@@ -38811,7 +38811,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lights: []
   GridObjects: []
-  MaxIntensity: 3
+  MaxIntensity: 4
   MinIntensity: 1
 --- !u!1001 &1981832174
 Prefab:
