@@ -11,10 +11,6 @@ public class GameManager : MonoBehaviour {
 	private GameObject _nextGameObject;
 	private int _currentLevel = 0;
 
-	void Update() {
-		checkGameStatus ();
-	}
-
 	public GameObject NextObject
 	{
 		get
@@ -28,6 +24,16 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 	}
+		
+	void Start() {
+		GlowingObject glowingObject = NextObject.GetComponent<GlowingObject>();
+		glowingObject.ShouldGlow = true;
+	}
+
+	void Update() {
+		checkGameStatus ();
+	}
+
 
 	public void CompleteLevel() {
 		_currentLevel++;
