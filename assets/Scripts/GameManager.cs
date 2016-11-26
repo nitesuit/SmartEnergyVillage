@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-
+using System.Linq;
 
 public class GameManager : MonoBehaviour {
 
@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
 
 	public int Score { get; set; }
 	public List<GameObject> Objects;
-	private List<GameObject> _connectedObjects;
+	private List<GameObject> _selectedObjects;
 	private GameObject _nextGameObject;
 	private int _currentLevel = 0;
 	public static string ManagerTag = "GameManager";
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Awake() {
-		_connectedObjects = new List<GameObject> ();
+		_selectedObjects = new List<GameObject> ();
 	}
 		
 	public GameObject NextObject
@@ -57,12 +57,16 @@ public class GameManager : MonoBehaviour {
 	// Connecting objects 
 
 	public void Select(GameObject gameObject) {
-		if (_connectedObjects.Count == 2) {
-			LineHelper.Connect (_connectedObjects [0], _connectedObjects [1]);
-			_connectedObjects = new List<GameObject> ();
+		if (_selectedObjects.Count == 1 && _selectedObjects.First().Equals(gameObject) ) {
+			_selectedObjects = new List<GameObject> ();
 			return;
 		}
-		_connectedObjects.Add (gameObject);
+		_selectedObjects.Add (gameObject);
+		if (_selectedObjects.Count == 2) {
+			LineHelper.Connect (_selectedObjects [0], _selectedObjects [1]);
+			_selectedObjects = new List<GameObject> ();
+			return;
+		}
 	}
 
 	//Private functions
