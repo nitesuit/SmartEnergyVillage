@@ -5,16 +5,17 @@ using System.Linq;
 
 public class TurbineManager : MonoBehaviour
 {
+	public bool thisIsPrimary = false;
 
 	public Transform rotator;
 	public Transform meshObj;
 	public Transform particleSys;
+	
 	public float volume;
 	public float rotatorSpeed;
 
 	public float fixedBuiltTime = 0.75f;
 	//
-	public float baseVolume;
 
 	private float buildTimer;
 	private float maxSpeed = 7.5f;
@@ -27,7 +28,9 @@ public class TurbineManager : MonoBehaviour
 	private float minYPosition = 9.5f;
 	//
 	
-	AudioSource audioSource;
+	static AudioSource audioSource;
+	public static float baseVolume;
+
 
 	// Use this for initialization
 	void Start()
@@ -125,6 +128,7 @@ public class TurbineManager : MonoBehaviour
 
 		set
 		{	
+			GameManager.instance.GridManager.Blink();
 			isConnected = value;
 			if (value)
 			{
@@ -138,10 +142,12 @@ public class TurbineManager : MonoBehaviour
 		get
 		{
 			return isPowered;
+			
 		}
 
 		set
-		{	
+		{
+			GameManager.instance.GridManager.TurnOn();
 			isPowered = value;
 		}
 	}
@@ -158,7 +164,7 @@ public class TurbineManager : MonoBehaviour
 
 			if (baseVolume > 0f && rotatorSpeed < maxSpeed)
 			{
-				acceleration = volume - baseVolume > 0.15f ? 0.05f : 0f;
+				acceleration = volume - baseVolume > 0.05f ? 0.05f : 0f;
 			}
 
 			rotatorSpeed += acceleration;
@@ -194,17 +200,23 @@ public class TurbineManager : MonoBehaviour
 	
 	void StartListenAudio()
 	{
-		audioSource.clip = Microphone.Start(Microphone.devices[0], true, 1, 44100);
-		audioSource.loop = true;
 
-		while (!(Microphone.GetPosition(null) > 0)) { }
-		audioSource.Play();
+		if (audioSource.clip == null)
+		{
+			audioSource.clip = Microphone.Start(Microphone.devices[0], true, 1, 44100);
+			audioSource.loop = true;
 
-		StartCoroutine(SetBaseVolume());
+			while (!(Microphone.GetPosition(null) > 0)) { }
+			audioSource.Play();
+
+			StartCoroutine(SetBaseVolume());
+			thisIsPrimary = true;
+		}
 	}
 
 	void AnalyzeSound(AudioSource MusicSource)
-	{
+	{	
+	
 		float[] data = new float[SampleSize];
 		audioSource.GetOutputData(data, 0);
 		//take the median of the recorded samples

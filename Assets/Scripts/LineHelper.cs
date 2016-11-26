@@ -8,25 +8,36 @@ public class LineHelper : MonoBehaviour {
 	
 	public static void Connect(Transform firstObject, Transform secondObject)
 	{
+		
 		if (firstObject == secondObject)
 			return;
-	
-		if (firstObject.gameObject.GetComponent<LineRenderer>() != null)
-		{
-			if (secondObject.gameObject.GetComponent<LineRenderer>() != null)
-			{
-				return;
-			}
-			else
-			{
-				var temp = firstObject;
-				firstObject = secondObject;
-				secondObject = firstObject;
-			}
-		}
 
-		firstObject = firstObject.GetComponent<SmartObject>().wireConnector;
-		secondObject = secondObject.GetComponent<SmartObject>().wireConnector;
+		
+		Debug.Log("firstObject : " + firstObject.ToString());
+		Debug.Log("secondObject : " + secondObject.ToString());
+
+
+
+
+		//if (firstObject.gameObject.GetComponent<LineRenderer>() != null)
+		//{
+		//	if (secondObject.gameObject.GetComponent<LineRenderer>() != null)
+		//	{
+		//		return;
+		//	}
+		//	else
+		//	{
+		//		var temp = firstObject;
+		//		firstObject = secondObject;
+		//		secondObject = firstObject;
+		//	}
+		//}
+
+		if (firstObject.GetComponent<SmartObject>().wireConnector != null)
+			firstObject = firstObject.GetComponent<SmartObject>().wireConnector;
+			
+		if ( secondObject.GetComponent<SmartObject>().wireConnector != null)
+			secondObject = secondObject.GetComponent<SmartObject>().wireConnector;
 		
 		firstObject.gameObject.AddComponent<LineRenderer> ();
 		var lr = firstObject.GetComponent<LineRenderer> ();
