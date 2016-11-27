@@ -30,9 +30,14 @@ public class TurbineManager : MonoBehaviour
 	
 	static AudioSource audioSource;
 	public static float baseVolume;
-
+	public GridManager GridManager;
 
 	// Use this for initialization
+
+	void Awake() {
+		GridManager = GetComponent<GridManager> ();
+	}
+
 	void Start()
 	{
 
@@ -125,7 +130,7 @@ public class TurbineManager : MonoBehaviour
 
 		set
 		{	
-			GameManager.instance.GridManager.Blink();
+			GridManager.Blink();
 			isConnected = value;
 			if (value)
 			{
@@ -144,7 +149,7 @@ public class TurbineManager : MonoBehaviour
 
 		set
 		{
-			GameManager.instance.GridManager.TurnOn();
+			GridManager.TurnOn();
 			isPowered = value;
 		}
 	}

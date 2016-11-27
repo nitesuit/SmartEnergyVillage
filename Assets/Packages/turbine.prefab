@@ -38,6 +38,7 @@ GameObject:
   - 82: {fileID: 82000013065775306}
   - 65: {fileID: 65000011872135660}
   - 114: {fileID: 114000011671716078}
+  - 114: {fileID: 114000012908281526}
   m_Layer: 0
   m_Name: turbine
   m_TagString: Untagged
@@ -425,14 +426,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36def7bbc17a2498583775e23eb2993b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   thisIsPrimary: 1
+=======
+  thisIsPrimary: 0
+>>>>>>> 33784188dfe4f80cdbb07c236d5073d747db50e4
   rotator: {fileID: 4000011847838958}
   meshObj: {fileID: 4000012006318090}
   particleSys: {fileID: 4000013302057380}
   volume: 0
   rotatorSpeed: 0
   fixedBuiltTime: 3
+<<<<<<< HEAD
   isReady: 1
+=======
+  GridManager: {fileID: 0}
+  isReady: 0
+>>>>>>> 33784188dfe4f80cdbb07c236d5073d747db50e4
 --- !u!114 &114000011671716078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -445,6 +455,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wireConnector: {fileID: 4000013798614120}
+--- !u!114 &114000012908281526
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010452583358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41daed79199b3436187a5dfdc57eb69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Lights: []
+  GridObjects: []
+  MaxIntensity: 4
+  MinIntensity: 1
 --- !u!198 &198000014118972910
 ParticleSystem:
   m_ObjectHideFlags: 1
