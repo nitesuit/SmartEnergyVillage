@@ -30,9 +30,14 @@ public class TurbineManager : MonoBehaviour
 	
 	static AudioSource audioSource;
 	public static float baseVolume;
-
+	public GridManager GridManager;
 
 	// Use this for initialization
+
+	void Awake() {
+		GridManager = GetComponent<GridManager> ();
+	}
+
 	void Start()
 	{
 
@@ -57,9 +62,15 @@ public class TurbineManager : MonoBehaviour
 
 	void OnMouseDrag()
 	{
-		if (!isReady)
+
+		if (buildTimer <= 0f)
 		{
 			StartCoroutine(ShowBuildParticleCorout(true, false, 0f));
+		}
+		
+		if (!isReady)
+		{
+
 			IsBuilt = true;
 
 			buildTimer += Time.deltaTime;
@@ -81,27 +92,18 @@ public class TurbineManager : MonoBehaviour
 	IEnumerator ShowBuildParticleCorout(bool status, bool showBlast = false, float delay = 0f)
 	{
 
-		if (status)
-		{
-			particleSys.gameObject.SetActive(true);
-			var p = particleSys.GetComponent<ParticleSystem>();
-			p.Clear();
-			Debug.Log("Restart particles");
-		}
 			
 		if (showBlast)
 		{
 			var p = particleSys.GetComponent<ParticleSystem>();
 			p.loop = false;
-			p.startLifetime = 1.5f;
+			p.startLifetime = 0.75f;
 			p.startSpeed = 9.5f;
-			p.Play();
 		}
 
 		yield return new WaitForSeconds(delay);
 		
-		if(!status)
-			particleSys.gameObject.SetActive(false);
+		particleSys.gameObject.SetActive(status);
 	}
 	
 	public bool IsBuilt
@@ -128,7 +130,7 @@ public class TurbineManager : MonoBehaviour
 
 		set
 		{	
-			GameManager.instance.GridManager.Blink();
+			GridManager.Blink();
 			isConnected = value;
 			if (value)
 			{
@@ -147,7 +149,7 @@ public class TurbineManager : MonoBehaviour
 
 		set
 		{
-			GameManager.instance.GridManager.TurnOn();
+			GridManager.TurnOn();
 			isPowered = value;
 		}
 	}

@@ -7099,17 +7099,22 @@ Prefab:
     - target: {fileID: 198000014118972910, guid: 7c1570613f18540abb2ead89e110a6a0,
         type: 2}
       propertyPath: InitialModule.maxNumParticles
-      value: 150
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 198000014118972910, guid: 7c1570613f18540abb2ead89e110a6a0,
         type: 2}
       propertyPath: randomSeed
-      value: 1134202136
+      value: -1997154222
       objectReference: {fileID: 0}
     - target: {fileID: 198000014118972910, guid: 7c1570613f18540abb2ead89e110a6a0,
         type: 2}
       propertyPath: InitialModule.startSize.scalar
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000014118972910, guid: 7c1570613f18540abb2ead89e110a6a0,
+        type: 2}
+      propertyPath: EmissionModule.rate.scalar
+      value: 75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c1570613f18540abb2ead89e110a6a0, type: 2}
