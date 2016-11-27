@@ -5,7 +5,7 @@ public class CloudLerp : MonoBehaviour {
 	public bool ShouldMove { get; set; }
 
 	void Update() {
-		if (ShouldMove) {
+		if (!ShouldMove) {
 			return;
 		}
 		float finalSpeed = Time.deltaTime * 5f;
