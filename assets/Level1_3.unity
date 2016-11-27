@@ -13417,6 +13417,12 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400768, guid: 78807111ef5164ccabffdcc5635469eb, type: 2}
   m_PrefabInternal: {fileID: 663162080}
+--- !u!114 &665991589 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000010098241384, guid: 7c1570613f18540abb2ead89e110a6a0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815856103}
+  m_Script: {fileID: 11500000, guid: 36def7bbc17a2498583775e23eb2993b, type: 3}
 --- !u!1001 &666899544
 Prefab:
   m_ObjectHideFlags: 0
@@ -17171,6 +17177,10 @@ MonoBehaviour:
   - {fileID: 972694001}
   - {fileID: 2007068561}
   - {fileID: 98629705}
+  ParkQuestDone: 0
+  turbinesQuestPark:
+  - {fileID: 1719437834}
+  - {fileID: 665991589}
 --- !u!1001 &821669078
 Prefab:
   m_ObjectHideFlags: 0
@@ -33947,6 +33957,12 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477994, guid: 00eb6a86ed4344d5c9872a72d1bd42b8, type: 2}
   m_PrefabInternal: {fileID: 1718367427}
+--- !u!114 &1719437834 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000010098241384, guid: 7c1570613f18540abb2ead89e110a6a0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1819826543}
+  m_Script: {fileID: 11500000, guid: 36def7bbc17a2498583775e23eb2993b, type: 3}
 --- !u!1001 &1720446441
 Prefab:
   m_ObjectHideFlags: 0
@@ -34276,7 +34292,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 495908, guid: 8df91b7c7c88c493e844d6cd757c3859, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -14.5
+      value: -21.2
       objectReference: {fileID: 0}
     - target: {fileID: 495908, guid: 8df91b7c7c88c493e844d6cd757c3859, type: 2}
       propertyPath: m_LocalPosition.y
@@ -35947,7 +35963,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010452583358, guid: 7c1570613f18540abb2ead89e110a6a0, type: 2}
       propertyPath: m_Name
-      value: turbine (2)
+      value: park_turbine_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010098241384, guid: 7c1570613f18540abb2ead89e110a6a0,
+        type: 2}
+      propertyPath: fixedBuiltTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c1570613f18540abb2ead89e110a6a0, type: 2}
@@ -35993,7 +36014,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010452583358, guid: 7c1570613f18540abb2ead89e110a6a0, type: 2}
       propertyPath: m_Name
-      value: turbine (1)
+      value: park_turbine_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010098241384, guid: 7c1570613f18540abb2ead89e110a6a0,
+        type: 2}
+      propertyPath: fixedBuiltTime
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c1570613f18540abb2ead89e110a6a0, type: 2}

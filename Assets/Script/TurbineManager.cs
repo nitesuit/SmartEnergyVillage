@@ -21,9 +21,9 @@ public class TurbineManager : MonoBehaviour
 	private float maxSpeed = 7.5f;
 	private int SampleSize = 256;
 	//
-	private bool isBuilt;
-	private bool isConnected;
-	private bool isPowered;
+	public bool isBuilt;
+	public bool isConnected;
+	public bool isPowered;
 
 	private float minYPosition = 9.5f;
 	//

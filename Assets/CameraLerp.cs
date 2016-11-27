@@ -24,6 +24,22 @@ public class CameraLerp : MonoBehaviour {
 	
 	int currentMarker = -1;
 
+
+	IEnumerator Start()
+	{
+		StartCoroutine(QuestPark());
+
+		while (!ParkQuestDone)
+		{
+
+			yield return new WaitForSeconds(1f);
+		}
+
+		Debug.Log("ParkQuestDone");
+		moveToStation = true;
+
+	}
+
 	void Update()
 	{
 		if (moveToStation && !isMoving && currentMarker < (moveMoveToStationCheckPoints.Count - 1))
@@ -71,6 +87,33 @@ public class CameraLerp : MonoBehaviour {
 
 		}
 
+	}
+
+
+	public bool ParkQuestDone;
+	public List<TurbineManager> turbinesQuestPark;
+
+	IEnumerator QuestPark()
+	{
+		while (true)
+		{	
+			bool isDone = true;
+			foreach (var t in turbinesQuestPark)
+			{
+				if (t.IsPowered == false)
+					isDone = false;
+			}
+
+			Debug.Log("IsPowered check: " + isDone);
+			
+			yield return new WaitForSeconds(0.5f);
+
+			if (isDone)
+				break;
+		}
+
+		ParkQuestDone = true;
+		
 	}
 
 	
