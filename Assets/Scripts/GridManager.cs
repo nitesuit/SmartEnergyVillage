@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class GridManager : MonoBehaviour {
 
-	public static GridManager instance;
 	public Light[] Lights;
 	public List<GameObject> GridObjects;
 	private bool _shouldBlink = false;
@@ -15,11 +14,6 @@ public class GridManager : MonoBehaviour {
 		if (GridObjects == null) {
 			GridObjects = new List<GameObject>();
 		}
-		Lights = FindObjectsOfType<Light> (); 
-		if (instance == null)
-		{ instance = this; }
-		else
-		{ Destroy(instance); }
 	}
 
 	void Update() {

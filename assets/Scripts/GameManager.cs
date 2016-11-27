@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour {
 	public List<GameObject> Objects;
 	private List<GameObject> _selectedObjects;
 	private GameObject _nextGameObject;
-	public GridManager GridManager;
 	private int _currentLevel = 0;
 	public static string ManagerTag = "GameManager";
 
@@ -38,10 +37,6 @@ public class GameManager : MonoBehaviour {
 
 		_selectedObjects = new List<GameObject> ();
 
-
-		GridManager = GetComponent<GridManager> ();
-		//GridManager.GridObjects = Objects;
-		//GridManager.Blink ();
 
 		foreach (var house in Objects) {
 			house.AddComponent<SmartObject> ();
@@ -114,8 +109,9 @@ public class GameManager : MonoBehaviour {
 			Debug.Assert(_selectedObjects[1].transform != null);
 
 			LineHelper.Connect (_selectedObjects [0].transform, _selectedObjects [1].transform);
-			
-			GridManager.GridObjects.Add(_selectedObjects[1]);
+
+			_selectedObjects [0].GetComponent<TurbineManager> ().GridManager.GridObjects.Add (_selectedObjects [1]);
+			//GridManager.GridObjects.Add(_selectedObjects[1]);
 			_selectedObjects = new List<GameObject> ();
 			return;
 		}
