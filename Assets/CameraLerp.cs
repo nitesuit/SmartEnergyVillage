@@ -7,9 +7,12 @@ public class CameraLerp : MonoBehaviour {
 	public bool moveToStation;
 	public bool isMoving;
 
+	public bool isInStart = false;
+
 	public float checkPointTime = 2f;
 	public float speed = 1f;
-
+	
+	public List<CameraCheckpoint> moveMoveToStart = new List<CameraCheckpoint>();
 	public List<CameraCheckpoint> moveMoveToStationCheckPoints = new List<CameraCheckpoint>();
 
 	//
@@ -24,42 +27,99 @@ public class CameraLerp : MonoBehaviour {
 	
 	int currentMarker = -1;
 
+	bool notStartGame = true;
+
+	//
+
+	public CloudLerp CloudPark;
+	public CloudLerp CloudStation;
+	public CloudLerp Ballon;
 
 	IEnumerator Start()
 	{
+		CloudPark.ShouldMove = true;
+		yield return new WaitForSeconds(1.0f);
+		notStartGame = false;
+		
 		StartCoroutine(QuestPark());
 
 		while (!ParkQuestDone)
 		{
 
-			yield return new WaitForSeconds(1f);
+			yield return new WaitForSeconds(0.5f);
 		}
-
+		CloudStation.ShouldMove = true;
 		Debug.Log("ParkQuestDone");
 		moveToStation = true;
+
+		StartCoroutine(QuestionStation());
+		yield return new WaitForSeconds(0.5f);
+		Ballon.ShouldMove = true;
+		
+		while (!stationQuestIsDone)
+		{
+		
+			yield return new WaitForSeconds(0.25f);
+		}
+		
+		Debug.Log("stationQuestIsDone !!!!!!!!!");
+
+		float blinkTime = 1.75f;
+		float counter = 0f;
+
+		while (counter < blinkTime)
+		{
+			StationTurbine.GridManager.DoTrainOn(trainAnimator.gameObject.transform, (int)Random.Range (1f, 4f));
+			counter += Time.deltaTime;
+			yield return null;
+		}
+	
+		StationTurbine.GridManager.DoTrainOn(trainAnimator.gameObject.transform);		
+		yield return new WaitForSeconds(0.55f);
+		trainAnimator.enabled = true;
 
 	}
 
 	void Update()
 	{
-		if (moveToStation && !isMoving && currentMarker < (moveMoveToStationCheckPoints.Count - 1))
+		List<CameraCheckpoint> currentList;
+
+		if (notStartGame)
+			return;
+		
+		bool shouldMove;
+		if (isInStart)
 		{
-			Debug.Log("next: " + moveMoveToStationCheckPoints[currentMarker + 1].name);
+			currentList = moveMoveToStationCheckPoints;
+			shouldMove = moveToStation; 
+		}
+		else
+		{
+			currentList = moveMoveToStart;
+			shouldMove = true;
+		}
+	
+		if (shouldMove && !isMoving && currentMarker < (currentList.Count - 1))
+		{
+			Debug.Log("next: " + currentList[currentMarker + 1].name);
+			
 			if (currentMarker == -1)
 			{
 				startMarker = transform.position;
-				endMarker = moveMoveToStationCheckPoints[0].transform.position;
+				endMarker = currentList[0].transform.position;
+				speed = currentList[0].Speed;
 
 				startSize = GetComponent<Camera>().orthographicSize;
-				endSize = moveMoveToStationCheckPoints[0].OrthographicSize;
+				endSize = currentList[0].OrthographicSize;
 			}
 			else
 			{
-				startMarker = moveMoveToStationCheckPoints[currentMarker].transform.position;
-				endMarker = moveMoveToStationCheckPoints[currentMarker + 1].transform.position;
+				startMarker = currentList[currentMarker].transform.position;
+				endMarker = currentList[currentMarker + 1].transform.position;
+				speed = currentList[currentMarker + 1].Speed;
 				
-				startSize = moveMoveToStationCheckPoints[currentMarker].OrthographicSize;
-				endSize = moveMoveToStationCheckPoints[currentMarker + 1].OrthographicSize;
+				startSize = currentList[currentMarker].OrthographicSize;
+				endSize = currentList[currentMarker + 1].OrthographicSize;
 			}
 
 			startMarker = new Vector3(startMarker.x, transform.position.y, startMarker.z);
@@ -83,11 +143,18 @@ public class CameraLerp : MonoBehaviour {
 			if (fracJourney >= 1f)
 			{
 				isMoving = false;
-			}
-
+				if (!isInStart && !dummy)
+				{
+					isInStart = true;
+					currentMarker = -1;
+					dummy = true;
+				}
+			}			
 		}
 
 	}
+
+	bool dummy = false;
 
 
 	public bool ParkQuestDone;
@@ -96,7 +163,7 @@ public class CameraLerp : MonoBehaviour {
 	IEnumerator QuestPark()
 	{
 		while (true)
-		{	
+		{
 			bool isDone = true;
 			foreach (var t in turbinesQuestPark)
 			{
@@ -104,16 +171,42 @@ public class CameraLerp : MonoBehaviour {
 					isDone = false;
 			}
 
-			Debug.Log("IsPowered check: " + isDone);
-			
+//			Debug.Log("IsPowered check: " + isDone);
+
 			yield return new WaitForSeconds(0.5f);
 
 			if (isDone)
+			{
+				yield return new WaitForSeconds(1.5f);
 				break;
+			}
 		}
 
 		ParkQuestDone = true;
 		
+	}
+	
+	public bool stationQuestIsDone;
+	public TurbineManager StationTurbine;
+	public Animator trainAnimator;
+
+	IEnumerator QuestionStation()
+	{
+		while (true)
+		{
+			var isDone = StationTurbine.IsPowered;
+
+			if(isDone)
+			{
+				Debug.Log("QuestionStation::isDone");
+				yield return new WaitForSeconds(0.5f);
+				break;
+			}
+			yield return new WaitForSeconds(0.1f);
+		}
+
+		stationQuestIsDone = true;
+
 	}
 
 	

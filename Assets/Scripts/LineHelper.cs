@@ -70,7 +70,7 @@ public class LineHelper : MonoBehaviour {
 			
 			Vector3 mod = dist * ((1f / maxPointCount) * i);
 			
-			Debug.Log(yMod);
+//			Debug.Log(yMod);
 			
 			var point = startPoint + mod;
 			point = new Vector3(point.x, point.y * yMod , point.z);

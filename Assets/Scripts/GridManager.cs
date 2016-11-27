@@ -73,7 +73,7 @@ public class GridManager : MonoBehaviour {
 		}
 	}
 
-	private void setEmission(GameObject go, float intensity) {
+	public void setEmission(GameObject go, float intensity) {
 		Color baseColor = Color.white; //Replace this with whatever you want for your base color at emission level '1'
 		Material mat = go.GetComponent<Renderer>().material;
 		Color finalColor = baseColor * Mathf.LinearToGammaSpace (intensity * 100);
@@ -82,5 +82,14 @@ public class GridManager : MonoBehaviour {
 		}
 		mat.EnableKeyword ("_EMISSION");
 		mat.SetColor ("_EmissionColor", finalColor);
+	}
+
+	public void DoTrainOn(Transform train, float e = 4f)
+	{
+
+		foreach (Transform c in train)
+		{
+			setEmission(c.gameObject, e);
+		}
 	}
 }
