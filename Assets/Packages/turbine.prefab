@@ -426,23 +426,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36def7bbc17a2498583775e23eb2993b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  thisIsPrimary: 1
-=======
   thisIsPrimary: 0
->>>>>>> 33784188dfe4f80cdbb07c236d5073d747db50e4
   rotator: {fileID: 4000011847838958}
   meshObj: {fileID: 4000012006318090}
   particleSys: {fileID: 4000013302057380}
   volume: 0
   rotatorSpeed: 0
   fixedBuiltTime: 3
-<<<<<<< HEAD
-  isReady: 1
-=======
   GridManager: {fileID: 0}
   isReady: 0
->>>>>>> 33784188dfe4f80cdbb07c236d5073d747db50e4
 --- !u!114 &114000011671716078
 MonoBehaviour:
   m_ObjectHideFlags: 1
